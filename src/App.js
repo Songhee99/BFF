@@ -1,25 +1,31 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import "./App.css";
+import { useState } from "react";
+import Modal from "./components/Modal/Modal";
 
-function App() {
+const App = () => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  const onClickButton = () => {
+    setIsOpen(true);
+  };
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="BFFExplain">BFF = Best Friend Forever💓💓</div>
+      <button className="informButton" onClick={onClickButton}>
+        💛BFF 정보를 입력하세요~💚
+      </button>
+      {isOpen && (
+        <Modal
+          open={isOpen}
+          onClose={() => {
+            setIsOpen(false);
+          }}
+        />
+      )}
     </div>
   );
-}
+};
 
 export default App;
